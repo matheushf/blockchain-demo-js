@@ -72,6 +72,22 @@ header, footer {
     background-color: white;
     // flex: 0 0 auto;
 
+    .title {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+      height: 20px;
+
+      span {
+        font-weight: 300;
+      }
+
+      .remove {
+        cursor: pointer;
+        height: 20px;
+      }
+    }
+
     textarea {
       border: 0.5px solid $headers;
       padding: 10px;

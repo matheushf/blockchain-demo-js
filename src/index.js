@@ -5,11 +5,11 @@ demoChain.createTransaction(new Transaction('address 1', 'address 2', 100)); */
 import { Block, Blockchain } from './blockchain'
 
 let demoChain = new Blockchain();
-console.log('Mining block 1...');
+/* console.log('Mining block 1...');
 demoChain.addBlock(new Block("20/07/2017", { amount: 4 }));
 
 console.log('Mining block 2...');
-demoChain.addBlock(new Block("20/07/2017", { amount: 8 }));
+demoChain.addBlock(new Block("20/07/2017", { amount: 8 })); */
 
 console.log(demoChain)
 
@@ -33,7 +33,11 @@ new Vue({
   },
   methods: {
     addBlock() {
-      demoChain.addBlock(new Block("20/07/2017", { amount: 8 }));
+      demoChain.addBlock(new Block(new Date(), {}));
+    },
+
+    removeLast() {
+      demoChain.chain.pop();
     }
   }
 });

@@ -26,7 +26,13 @@
 
         <div v-for="(block, index) in blocks" class="block-outside">
           <div class="block">
-            <p><b>Block </b> #{{index}}</p>
+            <p class="title">
+              <b>Block <span>#{{index}}</span> </b>
+
+              <img @click="removeLast" v-if="index === blocks.length -1 && index != 0" class="remove" src="./assets/error.svg">
+
+            </p>
+
 
             <p><b>Data:</b></p>
             <textarea name="block-0" id="block-0" cols="auto" rows="auto">{{block.data}}</textarea>
@@ -40,6 +46,7 @@
             </p>
 
             <b>PREVIOUS HASH: </b>
+            <br>
             <span class="hash">
               {{block.previousHash}}
             </span>
