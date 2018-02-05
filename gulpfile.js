@@ -9,20 +9,12 @@ const gulp = require('gulp'),
   browserSync = require('browser-sync').create();
 
 const distDir = './dist';
+const srcStyles = ['src/*.scss'];
+const srcJs = ['src/*.js'];
+const srcHtml = ['src/*.html'];
+const srcAssets = ['src/assets/**.*'];
 
-const srcStyles = [
-  'src/*.scss'
-];
-
-const srcJs = [
-  'src/*.js'
-];
-
-srcHtml = [
-  'src/*.html'
-]
-
-const src = [...srcStyles, ...srcJs, ...srcHtml];
+const src = [...srcStyles, ...srcJs, ...srcHtml, ...srcAssets];
 
 gulp.task('styles', () => {
   let processors = [
@@ -56,16 +48,27 @@ gulp.task('html', () => {
     .pipe(gulp.dest(distDir));
 });
 
-gulp.task('build', ['styles', 'webpack', 'html']);
+gulp.task('assets', () => {
+  return gulp.src(srcAssets)
+    .pipe(gulp.dest(`${distDir}/assets/`));
+});
+
+gulp.task('build', ['styles', 'webpack', 'html', 'assets']);
 
 gulp.task('serve', ['build'], () => {
   browserSync.init({
-    server: './dist'
+    server: {
+      baseDir: ['./', './dist'],
+      routes: {
+        './': './node_modules'
+      }
+    }
   });
 
   gulp.watch(srcStyles, ['styles']);
   gulp.watch(srcJs, ['webpack']);
   gulp.watch(srcHtml, ['html']);
+  gulp.watch(srcAssets, ['assets']);
   gulp.watch(src).on('change', browserSync.reload);
 
 });

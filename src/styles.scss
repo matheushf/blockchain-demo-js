@@ -1,3 +1,117 @@
-html {
-  background: red;
+$headers: #006DF0;
+$text: #235387;
+$bg: black;
+$footer: $bg;
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: $bg;
+  font-family: 'Roboto';
+}
+
+.wrapper {
+  background: $bg;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer"
+}
+
+.content {
+  // grid-column: span 12;
+}
+
+header {
+  grid-area: header;
+  color: $headers;
+}
+
+header, footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content, .blocks {
+  overflow-x: auto;
+}
+
+.content {
+  grid-area: content;
+  padding: 20px;
+  color: $text;
+
+  .blocks {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .block-outside {
+    @include center();
+  }
+
+  .block {
+    padding: 10px;
+    border: 2px solid $headers;
+    // border-radius: 10px;
+    font-size: 12px;
+    background-color: white;
+    // flex: 0 0 auto;
+
+    textarea {
+      border: 0.5px solid $headers;
+      padding: 10px;
+    }
+
+    .hash {
+      font-size: 10px;
+    }
+  }
+
+  .arrow {
+    // margin: 0 20px 0 20px;
+
+    img {
+      width: 40px;
+    }
+  }
+
+  .add {
+    @include center();
+    color: #91DC5A;
+    margin-left: 10px;
+
+    span {
+      @include center();
+      cursor: pointer;
+    }
+
+    img {
+      width: 40px;
+      margin-right: 10px;
+    }
+  }
+}
+
+footer {
+  grid-area: footer;
+  grid-row-start: 3;
+  grid-row-end: 3;
+  background: $footer;
+  color: $text;
+  padding: 20px;
 }

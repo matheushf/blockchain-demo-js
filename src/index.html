@@ -1,18 +1,73 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Crypto Starter</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Crypto Starter</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
 
+  <div class="wrapper" id="app">
+
+    <header class="header">
+      <h1>Blockchain</h1>
+    </header>
+
+    <div class="content">
+
+      <div class="blocks">
+
+        <div v-for="(block, index) in blocks" class="block-outside">
+          <div class="block">
+            <p><b>Block </b> #{{index}}</p>
+
+            <p><b>Data:</b></p>
+            <textarea name="block-0" id="block-0" cols="auto" rows="auto">{{block.data}}</textarea>
+
+            <p>
+              <b>HASH:</b>
+              <br>
+              <span class="hash">
+                {{block.hash}}
+              </span>
+            </p>
+
+            <b>PREVIOUS HASH: </b>
+            <span class="hash">
+              {{block.previousHash}}
+            </span>
+          </div>
+
+          <div v-if="blocks[index+1]" class="arrow">
+            <img src="./assets/lock-and-chain.svg">
+          </div>
+
+        </div>
+
+        <div class="add">
+          <span @click="addBlock">
+            <img src="./assets/plus.svg"> Add block
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      matheushf
+    </footer>
+
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
   <script src="bundle.js"></script>
 
 </body>
