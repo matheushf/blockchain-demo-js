@@ -5,6 +5,7 @@ demoChain.createTransaction(new Transaction('address 1', 'address 2', 100)); */
 import { Block, Blockchain } from './blockchain'
 
 let demoChain = new Blockchain();
+demoChain.addBlock(new Block(new Date(), { 'some': 'data' }));
 /* console.log('Mining block 1...');
 demoChain.addBlock(new Block("20/07/2017", { amount: 4 }));
 
@@ -29,15 +30,30 @@ console.log('\nBalance of xavier is', savjeeCoin.getBalanceOfAddress('xaviers-ad
 new Vue({
   el: '#app',
   data: {
-    blocks: demoChain.chain
+    blocks: demoChain.chain,
+    text: ''
   },
   methods: {
     addBlock() {
-      demoChain.addBlock(new Block(new Date(), {}));
+      demoChain.addBlock(new Block(new Date(), { 'some': 'data' }));
     },
 
     removeLast() {
       demoChain.chain.pop();
+    },
+
+    checkData(event, index) {
+
+      if (!demoChain.chain[index + 1])
+        return;
+
+      let value = event.target.value.replace(/\s/g, '');
+      let valid = demoChain.checkBlockValid(index, value);
+
+      for (let i = index; i <= demoChain.chain.length - 1; i++) {
+        demoChain.chain[i].valid = valid;
+      }
+
     }
   }
 });

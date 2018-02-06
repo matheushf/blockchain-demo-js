@@ -7,6 +7,7 @@ export class Block {
     this.data = data;
     this.hash = this.calculateHash();
     this.nonce = 0;
+    this.valid = true;
   }
 
   calculateHash() {
@@ -17,6 +18,7 @@ export class Block {
     while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
       this.nonce++;
       this.hash = this.calculateHash();
+      this.valid = true;
     }
 
     console.log("BLOCK MINED: " + this.hash);
@@ -42,6 +44,15 @@ export class Blockchain {
     newBlock.previousHash = this.getLatestBlock().hash;
     newBlock.mineBlock(this.difficulty);
     this.chain.push(newBlock);
+  }
+
+  checkBlockValid(index, data) {
+    let temp = this.chain[index].data;
+
+    if (typeof temp === 'object')
+      temp = JSON.stringify(temp);
+
+    return temp == data;
   }
 
   isChainValid() {

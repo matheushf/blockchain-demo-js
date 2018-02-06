@@ -1,7 +1,9 @@
 $headers: #006DF0;
 $text: #235387;
-$bg: black;
+$bg: white;
 $footer: $bg;
+$green: #91DC5A;
+$red: #D80027;
 
 @mixin center {
   display: flex;
@@ -23,21 +25,21 @@ body {
   background: $bg;
   min-height: 100%;
   display: grid;
-  grid-template-rows: 1fr auto auto;
-  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr;
   grid-template-areas:
     "header"
     "content"
     "footer"
 }
 
-.content {
-  // grid-column: span 12;
-}
-
 header {
   grid-area: header;
   color: $headers;
+
+  img {
+
+  }
 }
 
 header, footer {
@@ -48,12 +50,36 @@ header, footer {
 
 .content, .blocks {
   overflow-x: auto;
+  ::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar
+  {
+    height: 8px;
+    width: 6px;
+    // background-color: #F5F5F5;
+  }
+
+  ::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    background-color: $headers;
+  }
 }
 
 .content {
   grid-area: content;
-  padding: 20px;
+  padding: 0 20px;
   color: $text;
+
+  .description {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
   .blocks {
     display: flex;
@@ -62,6 +88,7 @@ header, footer {
 
   .block-outside {
     @include center();
+    margin-bottom: 20px;
   }
 
   .block {
@@ -71,6 +98,14 @@ header, footer {
     font-size: 12px;
     background-color: white;
     // flex: 0 0 auto;
+
+    &.valid {
+      border-color: $green;
+    }
+
+    &.invalid {
+      border-color: $red;
+    }
 
     .title {
       display: flex;
@@ -91,6 +126,7 @@ header, footer {
     textarea {
       border: 0.5px solid $headers;
       padding: 10px;
+      width: 90%;
     }
 
     .hash {
@@ -108,12 +144,16 @@ header, footer {
 
   .add {
     @include center();
-    color: #91DC5A;
+    color: $green;
     margin-left: 10px;
 
     span {
       @include center();
       cursor: pointer;
+
+      &:hover {
+        color: darken($green, 20);
+      }
     }
 
     img {

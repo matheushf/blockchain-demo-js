@@ -17,15 +17,18 @@
   <div class="wrapper" id="app">
 
     <header class="header">
+      <img src="./assets/vectorstock_13669421__Converted_-01.png" height="130">
       <h1>Blockchain</h1>
     </header>
 
     <div class="content">
 
+      <p class="description">A small Web demonstration of the Blockchain concept and how it works.</p>
+
       <div class="blocks">
 
         <div v-for="(block, index) in blocks" class="block-outside">
-          <div class="block">
+          <div class="block" v-bind:class="{valid: block.valid, invalid: !block.valid}">
             <p class="title">
               <b>Block <span>#{{index}}</span> </b>
 
@@ -35,7 +38,7 @@
 
 
             <p><b>Data:</b></p>
-            <textarea name="block-0" id="block-0" cols="auto" rows="auto">{{block.data}}</textarea>
+            <textarea v-on:keyUp="checkData($event, index)" v-bind:id="'block-' + index" cols="auto" rows="auto">{{block.data}}</textarea>
 
             <p>
               <b>HASH:</b>
@@ -69,7 +72,10 @@
     </div>
 
     <footer class="footer">
-      matheushf
+      Matheus Victor, @matheushf
+      <br>
+      <br>
+      GitHub, LinkedIn, Gmail
     </footer>
 
   </div>
