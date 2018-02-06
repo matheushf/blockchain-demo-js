@@ -1,13 +1,10 @@
-# starter-blockchaing-js
-Simple Blockchain with JS
+# Blockchain JS Demo
 
+Simple Blockchain demonstration in JS, code based on the series of [Savjee](https://www.youtube.com/watch?v=zVqczFZr124).
 
-*purpose*
+If you have any idea to improve this, submit an issue to let me know.
 
-Create a page where I can demonstrate how does a Blockchain works, being possible to create new Blocks, see the Existent ones and the whole log
 
 # todo
 
-- Configure Gulp to open a server, transpile ES6 and SASS
-- Create the interface with CSS Grid
-- Desing the index with interaction inputs and outputs, scroll, and a minimalist layout.
+- Demonstrate the mining process to valid a Block
