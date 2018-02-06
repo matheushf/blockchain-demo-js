@@ -17,7 +17,7 @@
   <div class="wrapper" id="app">
 
     <header class="header">
-      <img src="./assets/vectorstock_13669421__Converted_-01.png" height="130">
+      <img src="./assets/img/vectorstock_13669421__Converted_-01.png" height="130">
       <h1>Blockchain</h1>
     </header>
 
@@ -31,11 +31,7 @@
           <div class="block" v-bind:class="{valid: block.valid, invalid: !block.valid}">
             <p class="title">
               <b>Block <span>#{{index}}</span> </b>
-
-              <!-- <img @click="removeLast" v-if="index === blocks.length -1 && index != 0" class="remove" src="./assets/error.svg"> -->
-
-              <i @click="removeLast" v-if="index === blocks.length -1 && index != 0" class="remove icon-error"></i>
-
+              <!-- <i @click="removeLast" v-if="index === blocks.length -1 && index != 0" class="remove icon-error"></i> -->
             </p>
 
 

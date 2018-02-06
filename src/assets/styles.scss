@@ -1,4 +1,4 @@
-@import './assets/icons';
+@import './icons';
 
 $headers: #006DF0;
 $text: #235387;
@@ -106,7 +106,7 @@ header, footer {
   .block {
     padding: 10px;
     border: 2px solid $headers;
-    // border-radius: 10px;
+    border-radius: 5px;
     font-size: 12px;
     background-color: white;
     // flex: 0 0 auto;

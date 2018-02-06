@@ -1,5 +1,6 @@
 const gulp = require('gulp'),
   webpack = require('gulp-webpack'),
+  del = require('del'),
   postcss = require('gulp-postcss'),
   sass = require('gulp-sass'),
   csswring = require('csswring'),
@@ -9,14 +10,14 @@ const gulp = require('gulp'),
   browserSync = require('browser-sync').create();
 
 const distDir = './dist';
-const srcStyles = ['src/*.scss'];
+const srcStyles = ['src/assets/styles.scss'];
 const srcJs = ['src/*.js'];
 const srcHtml = ['src/*.html'];
-const srcAssets = ['src/assets/**/**.*'];
+const srcAssets = ['src/assets/**/**.png', 'src/assets/**/fonts/**.*'];
 
 const src = [...srcStyles, ...srcJs, ...srcHtml, ...srcAssets];
 
-gulp.task('styles', () => {
+gulp.task('styles', ['clean'], () => {
   let processors = [
     csswring,
     autoprefixer
@@ -29,7 +30,7 @@ gulp.task('styles', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('babel', () => {
+gulp.task('babel', ['clean'], () => {
   gulp.src(srcJs)
     .pipe(babel({
       presets: ['env']
@@ -37,23 +38,27 @@ gulp.task('babel', () => {
     .pipe(gulp.dest(distDir));
 });
 
-gulp.task('webpack', () => {
+gulp.task('webpack', ['clean'], () => {
   return gulp.src(srcJs)
     .pipe(webpack(require('./webpack.config.babel')))
     .pipe(gulp.dest(distDir));
 });
 
-gulp.task('html', () => {
+gulp.task('html', ['clean'], () => {
   return gulp.src(srcHtml)
     .pipe(gulp.dest(distDir));
 });
 
-gulp.task('assets', () => {
+gulp.task('assets', ['clean'], () => {
   return gulp.src(srcAssets)
     .pipe(gulp.dest(`${distDir}/assets/`));
 });
 
-gulp.task('build', ['styles', 'webpack', 'html', 'assets']);
+gulp.task('clean', () => {
+  return del(['./dist/**']);
+});
+
+gulp.task('build', ['clean', 'styles', 'webpack', 'html', 'assets']);
 
 gulp.task('serve', ['build'], () => {
   browserSync.init({
