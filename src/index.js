@@ -43,11 +43,14 @@ new Vue({
     },
 
     checkData(event, index) {
+      let value = event.target.value;
 
-      if (!demoChain.chain[index + 1])
+      if (!demoChain.chain[index + 1]) {
+        demoChain.chain[index].data = value;
         return;
+      }
 
-      let value = event.target.value.replace(/\s/g, '');
+      value = value.replace(/\s/g, '');
       let valid = demoChain.checkBlockValid(index, value);
 
       for (let i = index; i <= demoChain.chain.length - 1; i++) {

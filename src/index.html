@@ -32,7 +32,9 @@
             <p class="title">
               <b>Block <span>#{{index}}</span> </b>
 
-              <img @click="removeLast" v-if="index === blocks.length -1 && index != 0" class="remove" src="./assets/error.svg">
+              <!-- <img @click="removeLast" v-if="index === blocks.length -1 && index != 0" class="remove" src="./assets/error.svg"> -->
+
+              <i @click="removeLast" v-if="index === blocks.length -1 && index != 0" class="remove icon-error"></i>
 
             </p>
 
@@ -43,27 +45,29 @@
             <p>
               <b>HASH:</b>
               <br>
-              <span class="hash">
+              <span v-bind:class="{invalid: !block.valid}" class="hash">
                 {{block.hash}}
               </span>
             </p>
 
             <b>PREVIOUS HASH: </b>
             <br>
-            <span class="hash">
+            <span v-bind:class="{invalid: !block.valid && !blocks[index-1].valid}" class="hash">
               {{block.previousHash}}
             </span>
           </div>
 
           <div v-if="blocks[index+1]" class="arrow">
-            <img src="./assets/lock-and-chain.svg">
+            <!-- <img src="./assets/lock-and-chain.svg"> -->
+            <i class="icon-lock-and-chain"></i>
           </div>
 
         </div>
 
         <div class="add">
           <span @click="addBlock">
-            <img src="./assets/plus.svg"> Add block
+            <!-- <img src="./assets/plus.svg"> Add block -->
+            <i class="icon-plus"></i> Add block
           </span>
         </div>
 
@@ -72,10 +76,15 @@
     </div>
 
     <footer class="footer">
-      Matheus Victor, @matheushf
-      <br>
-      <br>
-      GitHub, LinkedIn, Gmail
+      <div>
+        Matheus Victor (@matheushf)
+      </div>
+
+      <div>
+        <a href="https://www.github.com/matheushf" target="_blank"><i class="icon-github-logo"></i></a>
+        <a href="https://www.linkedin.com/in/matheushf" target="_blank"><i class="icon-linkedin-logo-button"></i></a>
+        <a href="mailto:hffmatheus@gmail.com" target="_blank"><i class="icon-gmail"></i></a>
+      </div>
     </footer>
 
   </div>

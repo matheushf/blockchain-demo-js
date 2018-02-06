@@ -12,7 +12,7 @@ const distDir = './dist';
 const srcStyles = ['src/*.scss'];
 const srcJs = ['src/*.js'];
 const srcHtml = ['src/*.html'];
-const srcAssets = ['src/assets/**.*'];
+const srcAssets = ['src/assets/**/**.*'];
 
 const src = [...srcStyles, ...srcJs, ...srcHtml, ...srcAssets];
 

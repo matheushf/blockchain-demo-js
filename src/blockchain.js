@@ -50,9 +50,9 @@ export class Blockchain {
     let temp = this.chain[index].data;
 
     if (typeof temp === 'object')
-      temp = JSON.stringify(temp);
+      temp = (JSON.stringify(temp)).replace(/\s/g, '');
 
-    return temp == data;
+    return temp.replace(/\s/g, '') == data;
   }
 
   isChainValid() {

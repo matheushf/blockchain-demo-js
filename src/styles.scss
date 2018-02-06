@@ -1,3 +1,5 @@
+@import './assets/icons';
+
 $headers: #006DF0;
 $text: #235387;
 $bg: white;
@@ -9,6 +11,10 @@ $red: #D80027;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin transition {
+  transition: all 0.5s ease-out;
 }
 
 html, body {
@@ -68,6 +74,12 @@ header, footer {
   {
     border-radius: 10px;
     background-color: $headers;
+    @include transition();
+
+    &:hover {
+      @include transition();
+      background-color: lighten($headers, 10);
+    }
   }
 }
 
@@ -118,8 +130,15 @@ header, footer {
       }
 
       .remove {
+        @include transition();
         cursor: pointer;
-        height: 20px;
+        font-size: 20px;
+        color: $red;
+
+        &:hover {
+          @include transition();
+          color: darken($red, 20);
+        }
       }
     }
 
@@ -131,14 +150,18 @@ header, footer {
 
     .hash {
       font-size: 10px;
+
+      &.invalid {
+        color: $red;
+        text-decoration: line-through;
+      }
     }
   }
 
   .arrow {
-    // margin: 0 20px 0 20px;
-
-    img {
-      width: 40px;
+    i {
+      font-size: 40px;
+      color: $headers;
     }
   }
 
@@ -149,15 +172,17 @@ header, footer {
 
     span {
       @include center();
+      @include transition();
       cursor: pointer;
 
       &:hover {
+        @include transition();
         color: darken($green, 20);
       }
     }
 
-    img {
-      width: 40px;
+    i {
+      font-size: 40px;
       margin-right: 10px;
     }
   }
@@ -170,4 +195,16 @@ footer {
   background: $footer;
   color: $text;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  a {
+    text-decoration: none;
+  }
+
+  i {
+    font-size: 20px;
+    margin: 10px;
+  }
 }
