@@ -4,6 +4,7 @@ Simple Blockchain demonstration in JS, code based on the series of [Savjee](http
 
 If you have any idea to improve this, submit an issue to let me know.
 
+[Demo](https://matheushf.github.io/blockchain-demo-js/)
 
 # todo
 
