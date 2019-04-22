@@ -13,9 +13,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/, loader: 'babel-loader', include
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+        },
+        include
       },
     ]
   },

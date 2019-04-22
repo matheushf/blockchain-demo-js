@@ -17,9 +17,13 @@ module.exports = {
     library: 'demoBlockchain'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/, loader: 'babel-loader', include
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+        },
+        include
       },
       {
         test: /\.scss$/,
